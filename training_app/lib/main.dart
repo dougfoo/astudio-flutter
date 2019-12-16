@@ -15,15 +15,38 @@ class Home extends StatelessWidget{
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-          child: Text('Foo Hello',
-              style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2.0,
-                  color: Colors.amber[600]
+      body: Column (
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Container(
+                color:Colors.cyan,
+                padding: EdgeInsets.all(50),
+                child: Text('CRow1')
+              ),
+              Container(
+                  color:Colors.green,
+                  padding: EdgeInsets.all(50),
+                  child: Text('CRow2')
               )
+            ],
           ),
+          Text('Row1'),
+          Text('Row2'),
+          FlatButton(
+            onPressed: () {
+              print('pressed me');
+            },
+            child: Text('Press me'),
+          ),
+          Container(
+            color:Colors.cyan,
+            padding: EdgeInsets.all(50),
+            child: Text('Row3')
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
