@@ -16,35 +16,41 @@ class Home extends StatelessWidget{
         backgroundColor: Colors.blue,
       ),
       body: Column (
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Row(
             children: <Widget>[
-              Container(
-                color:Colors.cyan,
-                padding: EdgeInsets.all(50),
-                child: Text('CRow1')
+              Expanded(
+                flex: 3,
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  color:Colors.cyan,
+                  child: Text('1'),
+                ),
               ),
-              Container(
+              Expanded(
+                flex: 2,
+                child: Container(
+                  padding: EdgeInsets.all(30),
                   color:Colors.green,
-                  padding: EdgeInsets.all(50),
-                  child: Text('CRow2')
-              )
-            ],
-          ),
-          Text('Row1'),
-          Text('Row2'),
+                  child: Text('2'),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  color:Colors.red,
+                  child: Text('3'),
+                ),
+              ),
+            ]),
           FlatButton(
             onPressed: () {
               print('pressed me');
             },
             child: Text('Press me'),
-          ),
-          Container(
-            color:Colors.cyan,
-            padding: EdgeInsets.all(50),
-            child: Text('Row3')
           )
         ],
       ),
