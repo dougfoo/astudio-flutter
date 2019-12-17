@@ -7,6 +7,7 @@ class WorldTime {
   String time;      // time in location
   String flag;      // url to asset icon
   String url;       // url location end path
+  bool isDaytime;
 
   WorldTime({this.location, this.flag, this.url});
 
@@ -27,10 +28,11 @@ class WorldTime {
       now = now.add(Duration(hours: int.parse(offset)));
       print(now);
       this.time = DateFormat.jm().format(now);
+      this.isDaytime = now.hour > 6 && now.hour < 20 ? true : false;
     }
     catch (e) {
       print(e);
-      this.time = 'error on fetch ${e}';
+      this.time = 'error on fetch ${e}' ;
     }
   }
 }
