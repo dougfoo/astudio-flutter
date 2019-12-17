@@ -17,17 +17,17 @@ class _LoadingState extends State<Loading> {
     WorldTime wt = WorldTime(location:'Germany', flag:'germany.png', url:'Europe/Berlin');
     await wt.getTime();
     print('the time ${wt.time}');
-    setState((){
-      time = wt.time;
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'time': wt.time,
+      'location': wt.location,
+      'flag': wt.flag
     });
   }
 
   @override
   void initState() {
     super.initState();
-
     setWorldTime();
-    print('hey init');
   }
 
   @override
@@ -35,7 +35,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
         body: Padding(
           padding: EdgeInsets.all(50.0),
-          child: Text(time)
+          child: Text('loading..')
         )
     );
   }
