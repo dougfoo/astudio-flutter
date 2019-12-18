@@ -15,7 +15,17 @@ class _LocationState extends State<Location> {
     WorldTime(location:'Sydney', flag:'night.jpg', url:'Australia/Sydney'),
     WorldTime(location:'Perth', flag:'day.jpg', url:'Australia/Perth')
   ];
-  int counter = 0;
+
+  void updateTime(index) async {
+    WorldTime wt = locations[index];
+    await wt.getTime();
+    Navigator.pop(context, {
+      'time': wt.time,
+      'location': wt.location,
+      'flag': wt.flag,
+      'isDaytime': wt.isDaytime,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +45,7 @@ class _LocationState extends State<Location> {
               child: Card(
                 child: ListTile(
                   onTap: () {
-
+                    updateTime(index);
                   },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(
