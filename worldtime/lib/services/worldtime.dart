@@ -20,7 +20,6 @@ class WorldTime {
 
       String datetime = data['datetime'];
       String offset = data['utc_offset'].substring(1, 3);
-      print(datetime);
       print(offset);
 
       DateTime now = DateTime.parse(datetime);
@@ -37,5 +36,4 @@ class WorldTime {
   }
 }
 
-WorldTime wt = WorldTime(location:'Germany', flag:'germany.png', url:'Europe/Berlin');
 
