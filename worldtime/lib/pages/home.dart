@@ -23,6 +23,16 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: bgColor,
+      floatingActionButton: Builder(builder: (BuildContext context) {
+        return FloatingActionButton(
+            onPressed: () {
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text('Hello!')));
+            },
+            tooltip: 'Help',
+            child: Text('+'),
+        );
+      }),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
