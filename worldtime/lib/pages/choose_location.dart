@@ -8,14 +8,20 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
   List<WorldTime> locations = [
-    WorldTime(location:'Berlin', flag:'day.jpg', url:'Europe/Berlin'),
+    WorldTime(location:'Berlin', flag:'flag1.jpg', url:'Europe/Berlin'),
     WorldTime(location:'Tokyo', flag:'day.jpg', url:'Asia/Tokyo'),
-    WorldTime(location:'New York', flag:'night.jpg', url:'America/New_York'),
+    WorldTime(location:'Charlotte', flag:'flag2.jpg', url:'America/New_York'),
     WorldTime(location:'Los Angeles', flag:'night.jpg', url:'America/Los_Angeles'),
-    WorldTime(location:'Sydney', flag:'night.jpg', url:'Australia/Sydney'),
-    WorldTime(location:'Perth', flag:'day.jpg', url:'Australia/Perth')
+    WorldTime(location:'Sydney', flag:'flag3.jpg', url:'Australia/Sydney'),
+    WorldTime(location:'Karachi', flag:'day.jpg', url:'Asia/Karachi'),
+    WorldTime(location:'North Korea', flag:'flag3.jpg', url:'Asia/Pyongyang'),
+    WorldTime(location:'China', flag:'day.jpg', url:'Asia/Shanghai'),
   ];
 
+  // how to save default state
+  int defaultState = 1;
+
+  // pops to the front page?
   void updateTime(index) async {
     WorldTime wt = locations[index];
     await wt.getTime();
@@ -41,7 +47,7 @@ class _LocationState extends State<Location> {
           itemCount: locations.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(2.0),
               child: Card(
                 child: ListTile(
                   onTap: () {

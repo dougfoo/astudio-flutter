@@ -8,6 +8,7 @@ class WorldTime {
   String flag;      // url to asset icon
   String url;       // url location end path
   bool isDaytime;
+  bool isDefault;   // add flag for default ?  one is true?  or add in container
 
   WorldTime({this.location, this.flag, this.url});
 

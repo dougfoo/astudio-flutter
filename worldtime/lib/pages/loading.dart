@@ -14,8 +14,10 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   String time = 'loading..';
 
+  // hard coded, but should figure out default for user
+  // and load the right default ?
   void setWorldTime() async {
-    WorldTime wt = WorldTime(location:'Germany', flag:'germany.png', url:'Europe/Berlin');
+    WorldTime wt = WorldTime(location:'Tokyo', flag:'day.jpg', url:'Asia/Tokyo');
     await wt.getTime();
     print('the time ${wt.time}');
     Navigator.pushReplacementNamed(context, '/home', arguments: {
