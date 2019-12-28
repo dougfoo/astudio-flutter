@@ -18,8 +18,8 @@ class WorldTime {
           'http://worldtimeapi.org/api/timezone/$url');
       Map data = jsonDecode(response.body);
 
-      String datetime = data['datetime'];
-      String offset = data['utc_offset'].substring(1, 3);
+      String datetime = data['datetime'];   // bug - not handled
+      String offset = data['utc_offset'].substring(0, 3);
       print(offset);
 
       DateTime now = DateTime.parse(datetime);

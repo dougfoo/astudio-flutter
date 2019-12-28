@@ -16,6 +16,8 @@ class _LocationState extends State<Location> {
     WorldTime(location:'Karachi', flag:'day.jpg', url:'Asia/Karachi'),
     WorldTime(location:'North Korea', flag:'flag3.jpg', url:'Asia/Pyongyang'),
     WorldTime(location:'China', flag:'day.jpg', url:'Asia/Shanghai'),
+    WorldTime(location:'Moscow', flag:'night.jpg', url:'Europe/Moscow'),
+    WorldTime(location:'Canary Island', flag:'flag2.jpg', url:'Atlantic/Canary'),
   ];
 
   // how to save default state
