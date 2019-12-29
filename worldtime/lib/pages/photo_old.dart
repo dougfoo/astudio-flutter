@@ -1,13 +1,14 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+/* test code to build a PageView scroller */
+
+class Photo extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _PhotoState createState() => _PhotoState();
 }
 
-class _HomeState extends State<Home> {
+class _PhotoState extends State<Photo> {
   String bgImage;
   final controller = PageController(
       initialPage: 1,
@@ -30,16 +31,6 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: Colors.amberAccent,
-      floatingActionButton: Builder(builder: (BuildContext context) {
-        return FloatingActionButton(
-          onPressed: () {
-            Scaffold.of(context).showSnackBar(
-                new SnackBar(content: new Text('Handicap feature coming soon, for now try swiping left/right !!')));
-          },
-          tooltip: 'Help',
-          child: Icon(Icons.accessible),
-        );
-      }),
       body: SafeArea(
         child: PageView (
           controller: controller,
