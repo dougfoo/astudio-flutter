@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worldtime/services/worldtime.dart';
+import 'package:worldtime/data.dart';
 
 class Location extends StatefulWidget {
   @override
@@ -7,21 +8,10 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  List<WorldTime> locations = [
-    WorldTime(location:'Berlin', flag:'flag1.jpg', url:'Europe/Berlin'),
-    WorldTime(location:'Tokyo', flag:'day.jpg', url:'Asia/Tokyo'),
-    WorldTime(location:'Charlotte', flag:'flag2.jpg', url:'America/New_York'),
-    WorldTime(location:'Los Angeles', flag:'night.jpg', url:'America/Los_Angeles'),
-    WorldTime(location:'Sydney', flag:'flag3.jpg', url:'Australia/Sydney'),
-    WorldTime(location:'Karachi', flag:'day.jpg', url:'Asia/Karachi'),
-    WorldTime(location:'North Korea', flag:'flag3.jpg', url:'Asia/Pyongyang'),
-    WorldTime(location:'China', flag:'day.jpg', url:'Asia/Shanghai'),
-    WorldTime(location:'Moscow', flag:'night.jpg', url:'Europe/Moscow'),
-    WorldTime(location:'Canary Island', flag:'flag2.jpg', url:'Atlantic/Canary'),
-  ];
+  List<WorldTime> locations = AppData().locations;
 
   // how to save default state
-  int defaultState = 1;
+  int defaultState = AppData().current;
 
   // pops to the front page?
   void updateTime(index) async {

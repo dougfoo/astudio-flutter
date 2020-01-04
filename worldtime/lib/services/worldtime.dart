@@ -4,16 +4,23 @@ import 'package:intl/intl.dart';
 
 class WorldTime {
   String location;  // the location part of url
-  String time;      // time in location
+  String time = "Loading..";      // time in location
   String flag;      // url to asset icon
   String url;       // url location end path
   bool isDaytime;
   bool isDefault;   // add flag for default ?  one is true?  or add in container
+  String image;
 
-  WorldTime({this.location, this.flag, this.url});
+  WorldTime({this.location, this.flag, this.url, this.image});
+
+  @override
+  String toString() {
+    return "WorldTime["+this.location+","+ this.time +"]";
+  }
 
   Future<void> getTime() async {
     try {
+      print('gettime $url');
       Response response = await get(
           'http://worldtimeapi.org/api/timezone/$url');
       Map data = jsonDecode(response.body);
