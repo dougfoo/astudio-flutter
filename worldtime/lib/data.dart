@@ -8,6 +8,7 @@ class AppData {
     WorldTime(location:'Tokyo', flag:'day.jpg', url:'Asia/Tokyo', image:'Niseko_BC_02.jpg'),
     WorldTime(location:'Charlotte', flag:'flag2.jpg', url:'America/New_York', image:'Niseko_BC_03.jpg'),
     WorldTime(location:'Los Angeles', flag:'night.jpg', url:'America/Los_Angeles', image:'Niseko_BC_04.jpg'),
+    WorldTime(location:'Honolulu', flag:'day.jpg', url:'Pacific/Honolulu', image:'Niseko_BC_11.jpg'),
     WorldTime(location:'Sydney', flag:'flag3.jpg', url:'Australia/Sydney', image:'Niseko_BC_05.jpg'),
     WorldTime(location:'Karachi', flag:'day.jpg', url:'Asia/Karachi', image:'Niseko_BC_06.jpg'),
     WorldTime(location:'North Korea', flag:'flag3.jpg', url:'Asia/Pyongyang', image:'Niseko_BC_07.jpg'),

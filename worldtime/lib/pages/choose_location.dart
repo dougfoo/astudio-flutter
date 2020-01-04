@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:worldtime/services/worldtime.dart';
 import 'package:worldtime/data.dart';
+import 'package:worldtime/pages/pref.dart';
 
 class Location extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _LocationState extends State<Location> {
     WorldTime wt = locations[index];
     await wt.getTime();
     Navigator.pop(context, {
+      'index': index,
       'time': wt.time,
       'location': wt.location,
       'flag': wt.flag,
@@ -42,8 +44,10 @@ class _LocationState extends State<Location> {
               padding: const EdgeInsets.all(2.0),
               child: Card(
                 child: ListTile(
-                  onTap: () {
+                  onTap: () async {
                     updateTime(index);
+                    String code = await SharedPreferencesHelper.getLanguageCode();
+                    print('lang code is $code.');
                   },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(

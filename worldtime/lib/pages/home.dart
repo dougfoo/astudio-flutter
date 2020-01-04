@@ -21,8 +21,8 @@ class _HomeState extends State<Home> {
   List<MyContainer> createContainers(List<WorldTime> wts) {
     List<MyContainer> list = new List<MyContainer>();
     wts.forEach((item) {
-      print("stuff ${item.time} ${item.image} ");
-      list.add(MyContainer('19:18:17', item.location,item.image));
+      print("created ${item.time} ${item.image} ");
+      list.add(MyContainer(item.time, item.location,item.image, controller));
     });
     return list;
   }
@@ -31,7 +31,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     print('home::build');
     List<MyContainer> containers = createContainers(locations);
-
     print("containers: ${containers}");
 
     return Scaffold(
@@ -49,79 +48,8 @@ class _HomeState extends State<Home> {
         body: SafeArea (
           child: PageView (
               controller: controller,
-              children: containers
+              children: containers,
 
-//                Container(
-//                  decoration: BoxDecoration(
-//                      image: DecorationImage(
-//                        image: AssetImage('assets/Niseko_BC_05.jpg'),
-//                        fit: BoxFit.cover,
-//                      )
-//                  ),
-//
-//                  child: Padding(
-//                    padding: EdgeInsets.fromLTRB(0, 120.0, 0, 0),
-//                    child: Column(
-//                      children: <Widget>[
-//                        Container(
-//                          child: Column(
-//                            mainAxisAlignment: MainAxisAlignment.center,
-//                            children: <Widget>[
-//                              GestureDetector(
-//                                  onTap: () async {
-//                                    dynamic result = await Navigator.pushNamed(context, '/location');  // pop from choose location
-//                                    setState(() {
-//                                      this.data = {
-//                                        'time': result['time'],
-//                                        'location': result['location'],
-//                                        'flag': result['flag'],
-//                                        'isDaytime': result['isDaytime'],
-//                                      };
-//                                    });                        },
-//                                  onLongPress: () async {
-//                                    dynamic result = await Navigator.pushNamed(context, '/pref');  // pop from choose location
-//                                  },
-//                                  onDoubleTap: () async {
-//                                    dynamic result = await Navigator.pushNamed(context, '/Home');  // pop from choose location
-//                                  },
-//                                  child: Row(
-//                                    mainAxisAlignment: MainAxisAlignment.center,
-//                                    children: <Widget>[
-//                                      Icon(Icons.edit_location),
-//                                      Text('Edit Location'),
-//                                    ],
-//                                  )
-//                              ),
-//                            ],
-//                          ),
-//                        ),
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: <Widget>[
-//                            Text(
-//                                data['location'],
-//                                style: TextStyle(
-//                                  fontSize: 28.0,
-//                                  letterSpacing: 2.0,
-//                                )
-//                            ),
-//                            SizedBox(width: 20.0,),
-//                            Text(
-//                                data['time'],
-//                                style: TextStyle(
-//                                  fontSize: 30.0,
-//                                  letterSpacing: 1.4,
-//                                  fontWeight: FontWeight.bold,
-//                                )
-//                            ),
-//                          ],
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                ),
-//                MyContainer("19:59:59", "Charlottey","Niseko_BC_03.jpg"),
-//              ],
           ),
         )
     );
@@ -132,8 +60,9 @@ class MyContainer extends StatelessWidget  {
   String time; // = "19:59:59";
   String location; // = "Charlotte";
   String image; // = "Niseko_BC_05.jpg";
+  PageController controller;
 
-  MyContainer(this.time, this.location, this.image);
+  MyContainer(this.time, this.location, this.image, this.controller);
 
   Widget build(context) {
     return new Container(
@@ -155,6 +84,9 @@ class MyContainer extends StatelessWidget  {
                   GestureDetector(
                       onTap: () async {
                         dynamic result = await Navigator.pushNamed(context, '/location');  // pop from choose location
+                        print('location ${result}');
+//                        controller.animateToPage(result['index']);   // dont work so well
+                          controller.jumpToPage(result['index']);
 //                        setState(() {
 //                          this.data = {
 //                            'time': result['time'],
@@ -174,7 +106,7 @@ class MyContainer extends StatelessWidget  {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(Icons.edit_location),
-                          Text('Edit Location'),
+                          Text('Edit Defaults'),
                         ],
                       )
                   ),

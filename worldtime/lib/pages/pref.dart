@@ -28,63 +28,26 @@ class _PrefState extends State<Pref> {
               }),
         ],
       ),
-      body: Builder(  // wrap in builder to get scaffold context for popup ?
-          builder: (BuildContext context) {
-            return Container(
-              child: ListView.builder(
-                itemCount: _languages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  String foo;
+      body:  Container(
+        child: ListView.builder(
+          itemCount: _languages.length,
+          itemBuilder: (BuildContext context, int index) {
 
-                  return ListTile(
-                    title: _buildFlag(_languages[index]),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.arrow_forward),
-                      onPressed: () async {
-                        // Save the user preference
-                        await SharedPreferencesHelper.setLanguageCode(
-                            _languages[index]
-                        );
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              TextEditingController cController = TextEditingController();
-                              return AlertDialog(
-                                title: Text('PrefSelected'),
-                                content: TextField(
-                                  controller: cController,
-                                ),
-                                actions: <Widget>[
-                                  MaterialButton(
-                                    elevation: 5.0,
-                                    color: Colors.blue,
-                                    child: Text('Save'),
-                                    onPressed: () {
-                                      print('click pop');
-                                      foo = cController.text.toString();
-//                                      Navigator.of(context).pop(
-//                                          cController.text.toString());
-                                      print('Hello $foo');
-
-                                      Scaffold.of(context).showSnackBar(
-                                          SnackBar(
-                                              content: Text('Hello $foo')
-                                          ));
-                                    },
-                                  )
-                                ],
-                              );
-                            }
-                        ); // showDialog
-                        // Refresh
-                        setState(() {});
-                      },
-                    ),
-                  );
+            return ListTile(
+              title: _buildFlag(_languages[index]),
+              trailing: IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                onPressed: () async {
+                  // Save the user preference
+                  await SharedPreferencesHelper.setLanguageCode(_languages[index]);
+                  // Refresh
+                  setState(() {});
                 },
               ),
             );
-          }),
+          },
+        ),
+      )
     );
   }
   // Returns the flag that corresponds to the languageCode
@@ -111,7 +74,10 @@ class SharedPreferencesHelper {
   static Future<String> getLanguageCode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(_kLanguageCode) ?? 'en';
+    String lang = prefs.getString(_kLanguageCode);
+    print('getLanguage $lang');
+
+    return lang ?? 'en';
   }
 
   /// ----------------------------------------------------------
@@ -120,6 +86,7 @@ class SharedPreferencesHelper {
   static Future<bool> setLanguageCode(String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    print('setLanguage $value');
     return prefs.setString(_kLanguageCode, value);
   }
 }
