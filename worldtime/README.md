@@ -1,16 +1,16 @@
 # worldtime
 
-A new Flutter application.
+First semi useful app published to Android app store
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project was based on a bootstrap/copy of Net Ninja's series which is a great way to get started:
+https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ
 
-A few resources to get you started if this is your first Flutter project:
+Course files - https://github.com/iamshaunjp/flutter...
+Android Studio - https://developer.android.com/studio
+Git - https://git-scm.com/downloads
+Flutter Installation - https://flutter.dev/docs/get-started/...
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+The one thing NetNinja doesn't go thru is how to publish to Android and IoS stores.. which isn't that hard, but would be a useful final video walkthru.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
