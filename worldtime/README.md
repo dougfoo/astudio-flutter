@@ -1,6 +1,8 @@
 # worldtime
 
-First semi useful app published to Android app store
+First semi useful app published to Android app store.
+https://play.google.com/store/apps/details?id=ai.foostack.worldtime
+
 
 ## Getting Started
 
