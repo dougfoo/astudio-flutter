@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:worldtime/services/worldtime.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:worldtime/data.dart';
+import 'package:worldtime/pages/pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+//  SharedPreferences pref = await SharedPreferencesHelper.getPrefs();
+
 
 class Loading extends StatefulWidget {
   @override
@@ -15,28 +19,25 @@ class _LoadingState extends State<Loading> {
 
   // hard coded, but should figure out default for user
   // and load the right default ?
-  void  setWorldTime() async {
+  setWorldTime() async {
     List<WorldTime> locations = AppData().locations;
-//    locations.forEach((location)   {
     for (WorldTime location in locations) {
       await location.getTime();
-      print("post ${location}");
+      print("post $location");
     }
 
-    WorldTime wt = WorldTime(location:'Tokyo', flag:'day.jpg', url:'Asia/Tokyo', image: 'Niseko_BC_11.jpg');
-    await wt.getTime();
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'time': locations[0].time,
-      'location': locations[0].location,
-      'flag': locations[0].flag,
-      'isDaytime': locations[0].isDaytime,
-    });
+    await SharedPreferencesHelper.init();
+    int index = SharedPreferencesHelper.getTimezoneIndex();
+    print ('got default pref tz $index');
+
+    Navigator.pushReplacementNamed(context, '/home', arguments: {'pageIndex': index });
   }
 
   @override
   void initState() {
     super.initState();
     setWorldTime();
+
   }
 
   @override

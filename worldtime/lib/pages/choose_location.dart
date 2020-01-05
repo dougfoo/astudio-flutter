@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:worldtime/services/worldtime.dart';
 import 'package:worldtime/data.dart';
 import 'package:worldtime/pages/pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+//  SharedPreferences pref = await SharedPreferencesHelper.getPrefs();
 
 class Location extends StatefulWidget {
   @override
@@ -11,19 +13,12 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
   List<WorldTime> locations = AppData().locations;
 
-  // how to save default state
-  int defaultState = AppData().current;
-
   // pops to the front page?
   void updateTime(index) async {
     WorldTime wt = locations[index];
     await wt.getTime();
     Navigator.pop(context, {
       'index': index,
-      'time': wt.time,
-      'location': wt.location,
-      'flag': wt.flag,
-      'isDaytime': wt.isDaytime,
     });
   }
 
@@ -33,7 +28,7 @@ class _LocationState extends State<Location> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           backgroundColor: Colors.blue[900],
-          title:Text('choose location'),
+          title:Text('choose default start'),
           centerTitle: true,
           elevation: 0, // whats this do drop shadow ??
         ),
@@ -46,8 +41,8 @@ class _LocationState extends State<Location> {
                 child: ListTile(
                   onTap: () async {
                     updateTime(index);
-                    String code = await SharedPreferencesHelper.getLanguageCode();
-                    print('lang code is $code.');
+                    SharedPreferencesHelper.setTimezoneIndex(index);
+                    print('timezone code is updated async to $index');
                   },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(

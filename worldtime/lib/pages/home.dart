@@ -1,7 +1,8 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:worldtime/data.dart';
 import 'package:worldtime/services/worldtime.dart';
+import 'package:worldtime/pages/pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,19 +10,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Map data = {};
-  List<WorldTime> locations = AppData().locations;
+  List<WorldTime> locations;
+  PageController controller;
+  SharedPreferences prefs;
 
-
-  final controller = PageController(
-      initialPage: 1,
+  @override
+  void initState() {
+    super.initState();
+    locations = AppData().locations;
+    int index = SharedPreferencesHelper.getTimezoneIndex();  // init in loader
+    print('locindex is $index');
+    controller = PageController(
+      initialPage: index,
       keepPage: true
-  );
+    );
+  }
 
   List<MyContainer> createContainers(List<WorldTime> wts) {
     List<MyContainer> list = new List<MyContainer>();
     wts.forEach((item) {
-      print("created ${item.time} ${item.image} ");
       list.add(MyContainer(item.time, item.location,item.image, controller));
     });
     return list;
@@ -29,9 +36,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print('home::build');
     List<MyContainer> containers = createContainers(locations);
-    print("containers: ${containers}");
 
     return Scaffold(
         backgroundColor: Colors.blue,
@@ -49,7 +54,6 @@ class _HomeState extends State<Home> {
           child: PageView (
               controller: controller,
               children: containers,
-
           ),
         )
     );
@@ -85,16 +89,7 @@ class MyContainer extends StatelessWidget  {
                       onTap: () async {
                         dynamic result = await Navigator.pushNamed(context, '/location');  // pop from choose location
                         print('location ${result}');
-//                        controller.animateToPage(result['index']);   // dont work so well
                           controller.jumpToPage(result['index']);
-//                        setState(() {
-//                          this.data = {
-//                            'time': result['time'],
-//                            'location': result['location'],
-//                            'flag': result['flag'],
-//                            'isDaytime': result['isDaytime'],
-//                          };
-//                        });
                       },
                       onLongPress: () async {
                         dynamic result = await Navigator.pushNamed(context, '/pref');  // pop from choose location

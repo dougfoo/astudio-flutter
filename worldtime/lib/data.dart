@@ -1,4 +1,6 @@
 import 'package:worldtime/services/worldtime.dart';
+import 'package:worldtime/pages/pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppData {
   static final AppData _appData = new AppData._internal();
@@ -17,9 +19,7 @@ class AppData {
     WorldTime(location:'Canary Island', flag:'flag2.jpg', url:'Atlantic/Canary', image:'Niseko_BC_10.jpg'),
   ];
 
-  int current = 1;
-
-  factory AppData() {
+  factory AppData()  {
     return _appData;
   }
   AppData._internal();

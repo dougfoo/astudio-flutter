@@ -20,19 +20,18 @@ class WorldTime {
 
   Future<void> getTime() async {
     try {
-      print('gettime $url');
-      Response response = await get(
-          'http://worldtimeapi.org/api/timezone/$url');
+//      print('gettime $url');
+      Response response = await get('http://worldtimeapi.org/api/timezone/$url');
       Map data = jsonDecode(response.body);
 
       String datetime = data['datetime'];   // bug - not handled
       String offset = data['utc_offset'].substring(0, 3);
-      print(offset);
+//      print(offset);
 
       DateTime now = DateTime.parse(datetime);
-      print(now);
+//      print(now);
       now = now.add(Duration(hours: int.parse(offset)));
-      print(now);
+//      print(now);
       this.time = DateFormat.jm().format(now);
       this.isDaytime = now.hour > 6 && now.hour < 20 ? true : false;
     }
